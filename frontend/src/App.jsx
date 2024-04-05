@@ -23,8 +23,9 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* <PhotoListItem photo={sampleDataForPhotoListItem} /> */}
-      <PhotoList photos={photos} />
+      {photos.map((photo, index) => (
+        <PhotoListItem key={index} photo={photo} />
+      ))}
     </div>
   );
 };
