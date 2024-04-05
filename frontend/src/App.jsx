@@ -19,9 +19,12 @@ const sampleDataForPhotoListItem = {
 // Note: Rendering a single component to build components in isolation
 //Refactor PhotoListItem to use props. Then pass in the sampleDataForPhotoListItem via props.
 const App = () => {
+  const photos = new Array(3).fill(sampleDataForPhotoListItem);
+
   return (
     <div className="App">
-      <PhotoListItem photo={sampleDataForPhotoListItem} />
+      {/* <PhotoListItem photo={sampleDataForPhotoListItem} /> */}
+      <PhotoList photos={photos} />
     </div>
   );
 };
