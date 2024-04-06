@@ -12,6 +12,10 @@ const PhotoListItem = ({photo}) => {
     
   return (
 <div className="photo-list__item">
+<PhotoFavButton
+          onClick={handleFavButtonClick}
+          isActive={isFavorited}
+        />
   <img className="photo-list__image" src={photo.urls.full} alt="Photo" />
   <div className="photo-list__user_info">
     <img className="photo-list__user-profile" src={photo.user.profile} alt="Profile" />
@@ -19,10 +23,6 @@ const PhotoListItem = ({photo}) => {
       <div className="photo-list__user-details">{photo.user.username}</div>
      <div className="photo-list__user-location">{photo.location.city}, {photo.location.country}</div>
     </div>
-    <PhotoFavButton
-          onClick={handleFavButtonClick}
-          isActive={isFavorited}
-        />
   </div>
 </div>
   );
