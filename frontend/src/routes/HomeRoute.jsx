@@ -1,14 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import '../styles/HomeRoute.scss';
-import TopNavigationBar from 'components/TopNavigationBar';
-import PhotoList from 'components/PhotoList';
+import "../styles/HomeRoute.scss";
+import TopNavigationBar from "components/TopNavigationBar";
+import PhotoList from "components/PhotoList";
 
-const HomeRoute = ({topics, photos}) => {
+const HomeRoute = ({
+  topics,
+  photos,
+  favouritePhotos,
+  toggleFavouritePhoto,
+}) => {
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} />
-      <PhotoList photos={photos} />
+      <PhotoList
+        photos={photos}
+        favouritePhotos={favouritePhotos}
+        toggleFavouritePhoto={toggleFavouritePhoto}
+      />
     </div>
   );
 };
