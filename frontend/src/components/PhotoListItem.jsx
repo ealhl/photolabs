@@ -9,8 +9,7 @@ const PhotoListItem = (props) => {
     const handleFavButtonClick = () => {
       setIsFavorited(prev => !prev);
     };
-    console.log("props", props);
-    console.log("isFavorited", isFavorited);
+    
   return (
 <div className="photo-list__item">
   <img className="photo-list__image" src={props.photo.urls.full} alt="Photo" />
