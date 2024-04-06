@@ -13,7 +13,8 @@
 }
 
 .photo-list__fav-icon.active {
-  fill: red; /* Change fill color for active state */
+   /* Change fill color for active state */
+   background-color: red;
 }
 
 .photo-list__fav-icon-svg {
