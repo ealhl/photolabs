@@ -12,10 +12,10 @@ const PhotoListItem = ({photo}) => {
     
   return (
 <div className="photo-list__item">
-<PhotoFavButton
-          onClick={handleFavButtonClick}
-          isActive={isFavorited}
-        />
+  <PhotoFavButton
+        onClick={handleFavButtonClick}
+        isActive={isFavorited} // Pass the isActive prop to PhotoFavButton
+  />
   <img className="photo-list__image" src={photo.urls.full} alt="Photo" />
   <div className="photo-list__user_info">
     <img className="photo-list__user-profile" src={photo.user.profile} alt="Profile" />
