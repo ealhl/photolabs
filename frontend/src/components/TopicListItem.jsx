@@ -3,10 +3,10 @@ import React from "react";
 import "../styles/TopicListItem.scss";
 
 
-const TopicListItem = (props) => {
+const TopicListItem = ({topic}) => {
   return (
     <div className="topic-list__item">
-      <a href={`/${props.topic.slug}`}>{props.topic.title}</a>
+      <a href={`/${topic.slug}`}>{topic.title}</a>
 
     </div>
   );
