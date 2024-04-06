@@ -4,6 +4,7 @@ import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
 import PhotoList from './components/PhotoList';
 
+
 const sampleDataForPhotoListItem = {
   id: "1",
   location: {
