@@ -72,23 +72,17 @@ const useApplicationData = () => {
 
   useEffect(() => {
     const fetchPhotoData = async () => {
-      try {
-        const photoResponse = await axios.get("/api/photos"); // Make a GET request to fetch photos
-        console.log("photoResponse", photoResponse.data);
-        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photos: photoResponse.data } }); // Dispatch action to set photoData in state
-      } catch (error) {
-        console.error("Error fetching photos:", error);
-      }
+
+        axios.get("/api/photos").then((res) => {
+          dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photos: res.data } });
+        }).catch((err) => console.error("Error fetching topics:", error)); // Make a GET request to fetch photos // Dispatch action to set photoData in state
     };
 
     const fetchTopicData = async () => {
-      try {
-        const topicResponse = await axios.get("/api/topics");
-        console.log("topicResponse", topicResponse.data);
-        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: topicResponse.data } });
-      } catch (error) {
-        console.error("Error fetching topics:", error);
-      }
+
+        axios.get("/api/topics").then((res) => {
+          dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: res.data } });
+        }).catch((err) => console.error("Error fetching topics:", error));
     };
 
     fetchPhotoData();
