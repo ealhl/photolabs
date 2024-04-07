@@ -3,7 +3,7 @@ import "./App.scss";
 import HomeRoute from "routes/HomeRoute";
 import topics from "mocks/topics";
 import photos from "mocks/photos";
-import PhotoDetailsModal from "routes/PhotoDetailsModal"; 
+import PhotoDetailsModal from "routes/PhotoDetailsModal";
 
 // Note: Rendering a single component to build components in isolation
 //Refactor PhotoListItem to use props. Then pass in the sampleDataForPhotoListItem via props.
@@ -38,11 +38,17 @@ const App = () => {
         photos={photos}
         favouritePhotos={favouritePhotos}
         toggleFavouritePhoto={toggleFavouritePhoto}
-        openModal={openModal} 
+        openModal={openModal}
       />
-      {isModalOpen && <PhotoDetailsModal photo={selectedPhoto} closeModal={closeModal} />}
+      {isModalOpen && (
+        <PhotoDetailsModal
+          photo={selectedPhoto}
+          closeModal={closeModal}
+          toggleFavouritePhoto={toggleFavouritePhoto}
+          openModal={openModal}
+        />
+      )}
     </div>
-    
   );
 };
 
