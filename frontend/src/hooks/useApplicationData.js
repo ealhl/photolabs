@@ -1,16 +1,15 @@
 import { useReducer, useEffect } from "react";
-import topics from "mocks/topics";
-import photos from "mocks/photos";
+import axios from "axios";
 
 // Define action types
 export const ACTIONS = {
-  FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
-  FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
-  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
-  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
-  SELECT_PHOTO: 'SELECT_PHOTO',
-  DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  CLOSE_PHOTO_DETAILS_MODAL: 'CLOSE_PHOTO_DETAILS_MODAL',
+  FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
+  FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
+  SET_PHOTO_DATA: "SET_PHOTO_DATA",
+  SET_TOPIC_DATA: "SET_TOPIC_DATA",
+  SELECT_PHOTO: "SELECT_PHOTO",
+  DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+  CLOSE_PHOTO_DETAILS_MODAL: "CLOSE_PHOTO_DETAILS_MODAL",
 };
 
 // Reducer function
@@ -50,19 +49,19 @@ const reducer = (state, action) => {
         selectedPhoto: null,
         isModalOpen: true,
       };
-      case ACTIONS.CLOSE_PHOTO_DETAILS_MODAL:
-        return {
-          ...state,
-          selectedPhoto: null,
-          isModalOpen: false,
-        };
+    case ACTIONS.CLOSE_PHOTO_DETAILS_MODAL:
+      return {
+        ...state,
+        selectedPhoto: null,
+        isModalOpen: false,
+      };
+
     default:
       throw new Error(`Unsupported action type: ${action.type}`);
   }
 };
 
 const useApplicationData = () => {
-  
   const [state, dispatch] = useReducer(reducer, {
     topics: [],
     photos: [],
@@ -72,9 +71,29 @@ const useApplicationData = () => {
   });
 
   useEffect(() => {
-    dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: topics } });
-    dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photos: photos } });
-  }, []);
+    const fetchPhotoData = async () => {
+      try {
+        const photoResponse = await axios.get("/api/photos"); // Make a GET request to fetch photos
+        console.log("photoResponse", photoResponse.data);
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photos: photoResponse.data } }); // Dispatch action to set photoData in state
+      } catch (error) {
+        console.error("Error fetching photos:", error);
+      }
+    };
+
+    const fetchTopicData = async () => {
+      try {
+        const topicResponse = await axios.get("/api/topics");
+        console.log("topicResponse", topicResponse.data);
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: topicResponse.data } });
+      } catch (error) {
+        console.error("Error fetching topics:", error);
+      }
+    };
+
+    fetchPhotoData();
+    fetchTopicData();
+  }, []); // Pass an empty dependency array to run the effect only once after initial render
 
   const onPhotoSelect = (photo) => {
     dispatch({ type: ACTIONS.SELECT_PHOTO, payload: { photo } });
@@ -89,10 +108,7 @@ const useApplicationData = () => {
   };
 
   const onLoadTopic = (topicData) => {
-    setState((prevState) => ({
-      ...prevState,
-      topics: topicData,
-    }));
+    dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: topicData } });
   };
 
   const onClosePhotoDetailsModal = () => {
