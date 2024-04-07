@@ -5,7 +5,7 @@ import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
 
 const TopNavigation = ({ topics, favouritePhotos }) => {
-  const numFavoritedPhotos =
+  const isFavPhotoExist =
     Array.isArray(favouritePhotos) && favouritePhotos.length > 0
       ? favouritePhotos.length
       : 0;
@@ -13,7 +13,7 @@ const TopNavigation = ({ topics, favouritePhotos }) => {
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
       <TopicList topics={topics} />
-      <FavBadge numFavoritedPhotos={numFavoritedPhotos} />
+      <FavBadge isFavPhotoExist={isFavPhotoExist} />
     </div>
   );
 };

@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import PhotoFavButton from './PhotoFavButton';
 import "../styles/PhotoListItem.scss";
 
-const PhotoListItem = ({photo, isFavourite, onFavouriteToggle}) => {
+const PhotoListItem = ({photo, isFavourite, onFavouriteToggle, openModal}) => {
   /* Insert React */
   const handleFavouriteClick = () => {
     onFavouriteToggle(photo.id);
   };
+
+  const handleClick = () => {
+    openModal();
+  };
     
   return (
-<div className="photo-list__item">
+<div className="photo-list__item" onClick={handleClick}>
   <PhotoFavButton
         onClick={handleFavouriteClick}
         isActive={isFavourite} // Pass the isActive prop to PhotoFavButton

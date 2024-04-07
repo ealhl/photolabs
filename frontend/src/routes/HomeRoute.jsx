@@ -9,7 +9,9 @@ const HomeRoute = ({
   photos,
   favouritePhotos,
   toggleFavouritePhoto,
+  openModal
 }) => {
+
   return (
     <div className="home-route">
       <TopNavigationBar topics={topics} favouritePhotos={favouritePhotos}/>
@@ -17,6 +19,7 @@ const HomeRoute = ({
         photos={photos}
         favouritePhotos={favouritePhotos}
         toggleFavouritePhoto={toggleFavouritePhoto}
+        openModal={openModal}
       />
     </div>
   );
