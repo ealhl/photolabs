@@ -3,13 +3,19 @@ import { useEffect } from "react";
 import "../styles/PhotoDetailsModal.scss";
 import closeSymbol from "../assets/closeSymbol.svg";
 import PhotoList from "components/PhotoList";
+import PhotoFavButton from 'components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ photo, closeModal, toggleFavouritePhoto, openModal }) => {
+const PhotoDetailsModal = ({ photo, isFavourite, closeModal, toggleFavouritePhoto, openModal }) => {
   useEffect(() => {}, [photo]);
 
   const handleCloseClick = () => {
     closeModal(); // Call closeModal function when the close button is clicked
   };
+
+  const handleFavouriteClick = () => {
+    toggleFavouritePhoto(photo.id);
+  };
+
   const similarPhotosArray = Object.values(photo.similar_photos || {});
   return (
     <div className="photo-details-modal">
@@ -19,7 +25,12 @@ const PhotoDetailsModal = ({ photo, closeModal, toggleFavouritePhoto, openModal 
       >
         <img src={closeSymbol} alt="close symbol" />
       </button>
+      
       <div className="photo-details-modal__header">
+      <PhotoFavButton
+        onClick={handleFavouriteClick}
+        isActive={isFavourite} // Pass the isActive prop to PhotoFavButton
+  />
         <img
           className="photo-details-modal__image"
           src={photo.urls.full}
