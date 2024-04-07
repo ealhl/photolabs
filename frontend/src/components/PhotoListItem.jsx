@@ -9,7 +9,7 @@ const PhotoListItem = ({photo, isFavourite, onFavouriteToggle, openModal}) => {
   };
 
   const handleClick = () => {
-    openModal();
+    openModal(photo);
   };
     
   return (

@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ photos, favouritePhotos, toggleFavouritePhoto,openModal }) => {
+const PhotoList = ({ photos, favouritePhotos, toggleFavouritePhoto, openModal }) => {
   const handleFavouriteToggle = (photoId) => {
     toggleFavouritePhoto(photoId);
   };

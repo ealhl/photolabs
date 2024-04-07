@@ -19,8 +19,17 @@ const App = () => {
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  const openModal = (photo) => {
+    setSelectedPhoto(photo);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedPhoto(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="App">
@@ -31,7 +40,7 @@ const App = () => {
         toggleFavouritePhoto={toggleFavouritePhoto}
         openModal={openModal} 
       />
-      {isModalOpen && <PhotoDetailsModal closeModal={closeModal} />}
+      {isModalOpen && <PhotoDetailsModal photo={selectedPhoto} closeModal={closeModal} />}
     </div>
     
   );
