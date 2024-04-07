@@ -54,7 +54,9 @@
   color: #1e1e1e;
   margin-top: 24px;
   margin-bottom: 24px;
+  margin-left: 24px;
   width: 90%;
+  background-color: #F5F5F5;
 }
 
 .photo-details-modal__photographer-location {
@@ -74,4 +76,6 @@
   font-weight: 700;
   font-size: 12px;
   margin-left: 8px;
+  display: flex;
+  align-items: center;
 }

@@ -19,7 +19,7 @@ const PhotoListItem = ({photo, isFavourite, onFavouriteToggle, openModal}) => {
         isActive={isFavourite} // Pass the isActive prop to PhotoFavButton
   />
   <img className="photo-list__image" src={photo.urls.full} alt="Photo" onClick={handleClick}/>
-  <div className="photo-list__user_info">
+  <div className="photo-list__user-info">
     <img className="photo-list__user-profile" src={photo.user.profile} alt="Profile" />
     <div>
       <div className="photo-list__user-details">{photo.user.username}</div>
