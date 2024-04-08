@@ -68,25 +68,40 @@ const useApplicationData = () => {
     favouritePhotos: [],
     selectedPhoto: null,
     isModalOpen: false,
+    topicClicked: false,
   });
 
   useEffect(() => {
-    const fetchPhotoData = async () => {
-
-        axios.get("/api/photos").then((res) => {
-          dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: { photos: res.data } });
-        }).catch((err) => console.error("Error fetching topics:", error)); // Make a GET request to fetch photos // Dispatch action to set photoData in state
+    const fetchPhotoData = () => {
+      axios
+        .get("/api/photos")
+        .then((res) => {
+          dispatch({
+            type: ACTIONS.SET_PHOTO_DATA,
+            payload: { photos: res.data },
+          });
+        })
+        .catch((err) => console.error("Error fetching topics:", error)); // Make a GET request to fetch photos // Dispatch action to set photoData in state
     };
 
-    const fetchTopicData = async () => {
-
-        axios.get("/api/topics").then((res) => {
-          dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: res.data } });
-        }).catch((err) => console.error("Error fetching topics:", error));
+    const fetchTopicData = () => {
+      axios
+        .get("/api/topics")
+        .then((res) => {
+          dispatch({
+            type: ACTIONS.SET_TOPIC_DATA,
+            payload: { topics: res.data },
+          });
+        })
+        .catch((err) => console.error("Error fetching topics:", error));
     };
 
-    fetchPhotoData();
     fetchTopicData();
+
+    if (!state.topicClicked) {
+      // Check if a topic was clicked before fetching photo data
+      fetchPhotoData();
+    }
   }, []); // Pass an empty dependency array to run the effect only once after initial render
 
   const onPhotoSelect = (photo) => {
@@ -101,8 +116,16 @@ const useApplicationData = () => {
     }
   };
 
-  const onLoadTopic = (topicData) => {
-    dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: { topics: topicData } });
+  const onLoadTopic = (topicId) => {
+    axios
+      .get(`/api/topics/photos/${topicId}`)
+      .then((res) => {
+        dispatch({
+          type: ACTIONS.SET_PHOTO_DATA,
+          payload: { photos: res.data },
+        });
+      })
+      .catch((err) => console.error("Error fetching photos by topic:", err));
   };
 
   const onClosePhotoDetailsModal = () => {

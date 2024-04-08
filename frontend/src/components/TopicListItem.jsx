@@ -1,13 +1,18 @@
-import React from "react";
-
+import { React, useEffect } from "react";
 import "../styles/TopicListItem.scss";
+import { use } from "chai";
 
+const TopicListItem = ({ topic, onLoadTopic }) => {
 
-const TopicListItem = ({topic}) => {
+  const onTopicClick = (topic) => {
+    onLoadTopic(topic.id);
+  }
+
   return (
-    <div className="topic-list__item">
-      <a href={`/${topic.slug}`}>{topic.title}</a>
-
+    <div className="topic-list__item" onClick={()=> onTopicClick(topic)}>
+      <span>
+        {topic.title}
+      </span>
     </div>
   );
 };

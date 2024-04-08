@@ -24,6 +24,7 @@ const App = () => {
         favouritePhotos={state.favouritePhotos}
         toggleFavouritePhoto={updateToFavPhotoIds}
         openModal={onPhotoSelect}
+        onLoadTopic={onLoadTopic}
       />
       {state.isModalOpen && (
         <PhotoDetailsModal

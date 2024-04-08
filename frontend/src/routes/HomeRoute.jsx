@@ -9,12 +9,13 @@ const HomeRoute = ({
   photos,
   favouritePhotos,
   toggleFavouritePhoto,
-  openModal
+  openModal,
+  onLoadTopic
 }) => {
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} favouritePhotos={favouritePhotos}/>
+      <TopNavigationBar topics={topics} favouritePhotos={favouritePhotos}  onLoadTopic={onLoadTopic}/>
       <PhotoList
         photos={photos}
         favouritePhotos={favouritePhotos}
