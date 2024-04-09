@@ -25,5 +25,5 @@ npm start
 
 ## Final Product
 
-!["Screenshot of URLs Index page"]()
-!["Screenshot of URLs Edit page"]()
+!["Screenshot of URLs Index page"](https://github.com/ealhl/photolabs/blob/main/docs/index.png)
+!["Screenshot of URLs Edit page"](https://github.com/ealhl/photolabs/blob/main/docs/modal.png)
